@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardController;
 
 
 
-
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
