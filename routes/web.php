@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardController;
 
 
 
-
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -22,5 +22,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
+
 
 

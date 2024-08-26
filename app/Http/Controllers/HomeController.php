@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use App\Models\Employer;
-use App\Models\Candidate;
+use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jobsCount = Job::count();
-        $employersCount = Employer::count();
-        $candidatesCount = Candidate::count();
+        $search = $request->input('search');
+        $jobs = Job::query()
+                    ->where('job_title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%")
+                    ->paginate(9);
 
-        return view('dashboard', compact('jobsCount', 'employersCount', 'candidatesCount'));
+        return view('home', compact('jobs'));
     }
 }
-
