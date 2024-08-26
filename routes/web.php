@@ -19,7 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-<<<<<<< HEAD
 use App\Http\Controllers\ApplicationController;
 
 Route::middleware(['auth'])->group(function () {
@@ -27,10 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/jobs/{job}/apply', [ApplicationController::class, 'submitApplication'])->name('jobs.apply.submit');
     Route::get('/applications', [ApplicationController::class, 'manageApplications'])->name('applications.manage');
 });
-=======
-require __DIR__.'/auth.php';
+
+
+require __DIR__ . '/auth.php';
 
 Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
-
->>>>>>> 7efe3697d492b1be7ae20eb8ed867048b15fc9ce
-
