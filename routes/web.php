@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\ApplicationController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/jobs/{job}/apply', [ApplicationController::class, 'showApplyForm'])->name('jobs.apply');
+    Route::post('/jobs/{job}/apply', [ApplicationController::class, 'submitApplication'])->name('jobs.apply.submit');
+    Route::get('/applications', [ApplicationController::class, 'manageApplications'])->name('applications.manage');
+});
+
