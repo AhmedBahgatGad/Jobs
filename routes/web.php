@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +30,8 @@ Route::put('/job_posts/{id}', [JobController::class, 'update'])->name('job_posts
 
 Route::delete('/job-posts/{id}', [JobController::class, 'destroy'])->name('job_posts.destroy');
 
+
+
+require __DIR__ . '/auth.php';
+
+Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
