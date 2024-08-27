@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\FlareClient\Api;
 
 class ApplicationController extends Controller
 {
@@ -38,7 +39,8 @@ class ApplicationController extends Controller
     // Manage applications (show list of user's applications)
     public function manageApplications()
     {
-        $applications = Application::where('user_id', Auth::id())->with('job')->get();
-        return view('applications.manage', compact('applications'));
+        // $applications = Application::where('user_id', Auth::id())->with('job')->get();
+        $applications = Application::all();
+        return view('manage', compact('applications'));
     }
 }
