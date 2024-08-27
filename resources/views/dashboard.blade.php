@@ -5,10 +5,14 @@
         </h2>
     </x-slot>
 
-    <!-- إضافة روابط Bootstrap في الرأس -->
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
+
+    <!-- Home Button -->
+    <div class="container my-3">
+        <a href="{{ route('home') }}" class="btn btn-primary">Home</a>
+    </div>
 
     <div class="container my-5">
         <div class="row g-4">

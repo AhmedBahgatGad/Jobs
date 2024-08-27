@@ -21,16 +21,16 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jobs</a>
+                        <a class="nav-link" href=" {{ route('job_posts.index') }} ">Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Employers</a>
+                        <a class="nav-link" href=" {{ route('employers.index') }} ">Employers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Candidates</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href=" {{ route('contact') }}  ">Contact</a>
                     </li>
                     <!-- Dashboard Link -->
                     <li class="nav-item">
@@ -49,7 +49,23 @@
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
+        
+        @auth
+            @if(auth()->user()->role === 'employer')
+                <a href=" {{ route('job_posts.create') }}" class="btn btn-primary mt-3">Create Job</a>
+            @endif
+            @if(auth()->user()->role === 'admin')
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-danger">Admin Dashboard</a>
+        @endif
+        @endauth
+    
     </div>
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
     <!-- Job Cards Section -->
     <div class="container my-5">
@@ -63,7 +79,7 @@
                         <p class="card-text">{{ Str::limit($job->description, 100) }}</p>
                         <div class="d-flex justify-content-between align-items-center mt-4">
                             <small class="text-muted">{{ $job->date }}</small>
-                            <a href="#" class="btn btn-primary btn-sm">View Details</a>
+                            <a href="{{ route('jobs.apply', $job->id) }}" class="btn btn-primary btn-sm">Apply</a>
                         </div>
                     </div>
                     <div class="card-footer text-muted">
@@ -71,6 +87,7 @@
                     </div>
                 </div>
             </div>
+            
             @endforeach
         </div>
 
